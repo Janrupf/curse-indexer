@@ -51,7 +51,7 @@ class ModIterator:
             index = self.current_index
             self.current_index += self.batch_size
 
-        if index >= self.limit:
+        if 0 < self.limit <= index:
             logger.debug("Iterator reached limit")
             raise StopIteration
 
@@ -68,7 +68,7 @@ class ModIterator:
             logger.debug("All mods drained from iterator")
             raise StopIteration
 
-        if len(cache) + index > self.limit:
+        if 0 < self.limit < len(cache) + index:
             logger.debug("Cache contains too many mods to respect limit, truncating...")
             cache = cache[:-(len(cache) + index - self.limit)]
 
