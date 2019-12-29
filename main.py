@@ -25,6 +25,8 @@ def main():
     args = cmd_line_parser.parse_args()
     if args.debug:
         logging.basicConfig(level=logging.DEBUG)
+    else:
+        logging.basicConfig(level=logging.INFO)
 
     curse_dl = curse.CurseModDownloader(http)
 
